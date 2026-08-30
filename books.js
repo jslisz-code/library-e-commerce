@@ -1,5 +1,44 @@
+function renderBooks() {
+  const booksWrapper = document.querySelector(".books");
+
+const books = getBooks();
+
+const booksHtml = books
+  .map((book) => {
+    return `<div class="book">
+  <figure class="book__img--wrapper">
+    <img class="books__img" src="${book.url}" alt="">
+  </figure>
+  <div class="book__title">
+    ${books.title}
+  </div>
+  <div class="book__ratings">
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star"></i>
+    <i class="fas fa-star-half-alt"></i>
+  </div>
+  <div class="book__price">
+    <span>$${book.originalPrice.toFixed(2)}</span>
+  </div>
+</div>`;
+  })
+  .join("");
+
+booksWrapper.innerHTML = booksHtml;
+console.log(booksHtml)
+  // booksWrapper.innerHTML = ;
+}
+
+function filterBooks() {
+  console.log('filterBooks')
+}
 
 
+setTimeout(() => {
+  renderBooks();
+});
 // FAKE DATA
 function getBooks() {
   return [
