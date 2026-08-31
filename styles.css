@@ -220,7 +220,7 @@ button {
 
 .header__img--wrapper {
   padding: 20px;
-  z-index: 2;
+  z-index: 50;
 }
 
 .container {
@@ -327,17 +327,23 @@ FEATURES
 
 .books {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .book {
   width: 25%;
   padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 }
 
 .book__img {
   max-height: 380px;
   transition: all 300kms ease;
   cursor: no-allowed;
+  object-fit: contain;
+  object-position: left;
 }
 
 .book__img--wrapper {
