@@ -1,7 +1,17 @@
-function renderBooks() {
+function renderBooks(filter) {
   const booksWrapper = document.querySelector(".books");
 
 const books = getBooks();
+
+if (filter === 'LOW_TO_HIGH') {
+  books.sort((a, b) => a.originalPrice - b.originalPrice);
+}
+else if (filter === 'HIGH_TO_LOW') {
+  books.sort((a, b) => b.originalPrice - a.originalPrice);
+}
+else if (filter === 'RATING') {
+  books.sort((a, b) => b.rating - a.rating);
+}
 
 const booksHtml = books
   .map((book) => {
@@ -10,31 +20,35 @@ const booksHtml = books
     <img class="books__img" src="${book.url}" alt="">
   </figure>
   <div class="book__title">
-    ${books.title}
+    ${book.title}
   </div>
   <div class="book__ratings">
-    <i class="fas fa-star"></i>
-    <i class="fas fa-star"></i>
-    <i class="fas fa-star"></i>
-    <i class="fas fa-star"></i>
-    <i class="fas fa-star-half-alt"></i>
+   ${ratingsHTML(book.rating)}
   </div>
   <div class="book__price">
-    <span>$${book.originalPrice.toFixed(2)}</span>
+    <span>$${book.rating.toFixed(2)}</span>
   </div>
 </div>`;
   })
   .join("");
 
 booksWrapper.innerHTML = booksHtml;
-console.log(booksHtml)
-  // booksWrapper.innerHTML = ;
 }
 
-function filterBooks() {
-  console.log('filterBooks')
+function ratingsHTML(rating) {
+let ratingHTML = "";
+for (let i = 0; i < Math.floor(rating); ++i) {
+  ratingHTML += '<i class="fas fa-star"></i>/n'
+}
+if (!Number.isInteger()) {
+  ratingHTML += '<i class="fas fa-star-half-alt"></i>'
+}
+return ratingHTML;
 }
 
+function filterBooks(event) {
+    renderBooks(event.target.value);
+  }
 
 setTimeout(() => {
   renderBooks();
